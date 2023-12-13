@@ -1,3 +1,14 @@
+ terraform {
+       backend "remote" {
+         # The name of your Terraform Cloud organization.
+         organization = "hpinc-global-preprod"
+
+         # The name of the Terraform Cloud workspace to store Terraform state files in.
+         workspaces {
+           name = "PranayTest"
+         }
+       }
+     }
 terraform {
   cloud {
     organization = "hpinc-global-preprod"
