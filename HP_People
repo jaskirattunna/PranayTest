@@ -1,0 +1,38 @@
+resource "genesyscloud_user" "example_user" {
+  email           = "pranay.kadam@orange.com"
+  name            = "Pranay Kadam"
+  password        = "Cloud@12345"
+  division_id     = "a0a43a0f-8d73-4e1b-8ac4-76fadebbf78b"
+  state           = "active"
+  acd_auto_answer = true
+  routing_skills {
+    skill_id    = genesyscloud_routing_skill.CS_Print.id
+    proficiency = 4.5
+  }
+  routing_utilization {
+    call {
+      maximum_capacity = 1
+      include_non_acd  = true
+    }
+    callback {
+      maximum_capacity          = 2
+      include_non_acd           = false
+      interruptible_media_types = ["call", "email"]
+    }
+    chat {
+      maximum_capacity          = 3
+      include_non_acd           = false
+      interruptible_media_types = ["call"]
+    }
+    email {
+      maximum_capacity          = 2
+      include_non_acd           = false
+      interruptible_media_types = ["call", "chat"]
+    }
+    message {
+      maximum_capacity          = 4
+      include_non_acd           = false
+      interruptible_media_types = ["call", "chat"]
+    }
+  }
+}
